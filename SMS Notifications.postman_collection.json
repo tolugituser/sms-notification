@@ -1,0 +1,381 @@
+{
+	"info": {
+		"_postman_id": "cd4f8c55-8c62-470d-a2b5-a0d73dbf6255",
+		"name": "SMS Notifications",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20958020",
+		"_collection_link": "https://martian-robot-157309.postman.co/workspace/Projects~342ed84b-ab55-4549-8b18-9ed20ea3d84f/collection/20958020-cd4f8c55-8c62-470d-a2b5-a0d73dbf6255?action=share&source=collection_link&creator=20958020"
+	},
+	"item": [
+		{
+			"name": "success",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/send-sms",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"send-sms"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone_number\": \"+2348012345678\",\r\n    \"message\": \"Your OTP is 123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/send-sms",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"send-sms"
+							]
+						}
+					},
+					"status": "Accepted",
+					"code": 202,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n  \"status\": true,\r\n  \"message\": \"SMS sent successfully\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "missing phone number",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/send-sms",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"send-sms"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "missing phone number",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\": \"Your OTP is 123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/send-sms",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"send-sms"
+							]
+						}
+					},
+					"status": "Unprocessable Content",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\n    \"status\": false,\n    \"message\": \"phone number is required\"\n}"
+				}
+			]
+		},
+		{
+			"name": "service unavailable",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/send-sms",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"send-sms"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "service unavailable",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"phone_number\": \"+2348012345678\",\r\n  \"message\": \"Your account got credited with 1000 naira\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/send-sms",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"send-sms"
+							]
+						}
+					},
+					"status": "Service Unavailable",
+					"code": 503,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\n    \"status\": false,\n    \"message\": \"Queue is full\"\n}"
+				}
+			]
+		},
+		{
+			"name": "empty string",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/send-sms",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"send-sms"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "empty string",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone_number\": \"\",\r\n    \"message\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/send-sms",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"send-sms"
+							]
+						}
+					},
+					"status": "Unprocessable Content",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n  \"status\": false,\r\n  \"message\": \"phone number cannot be empty\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Invalid phone number format",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/send-sms",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"send-sms"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Invalid phone number format",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"phone_number\": \"ACER15678%@ACER12345678\",\r\n  \"message\": \"Your OTP is 123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/send-sms",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"send-sms"
+							]
+						}
+					},
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n  \"status\": false,\r\n  \"message\": \"invalid phone number\"\r\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://5101c1f5-d810-4c05-a2b5-fbb40b836d82.mock.pstmn.io"
+		}
+	]
+}
